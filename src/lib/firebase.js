@@ -19,4 +19,6 @@ const { FieldValue } = getFirestore(firebase);
 // call seed file only once
 // seedDatabase(firebase)
 
+console.log('firebase', firebase);
+
 export { firebase, FieldValue };
