@@ -1,3 +1,5 @@
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
 /* eslint-disable no-plusplus */
 // NOTE: replace 'NvPY9M9MzFTARQ6M816YAzDJxZ72' with your Firebase auth user id (can be taken from Firebase)
 export function seedDatabase(firebase) {
@@ -42,33 +44,30 @@ export function seedDatabase(firebase) {
 
   // eslint-disable-next-line prefer-const
   for (let k = 0; k < users.length; k++) {
-    firebase.firestore().collection('users').add(users[k]);
+    addDoc(collection(getFirestore(firebase), 'users'), users[k]);
   }
 
   // eslint-disable-next-line prefer-const
   for (let i = 1; i <= 5; ++i) {
-    firebase
-      .firestore()
-      .collection('photos')
-      .add({
-        photoId: i,
-        userId: '2',
-        imageSrc: `/images/users/jisoo/${i}.jpg`,
-        caption: `pt. ${i}`,
-        likes: [],
-        comments: [
-          {
-            displayName: 'dali',
-            comment: 'Love this!',
-          },
-          {
-            displayName: 'orwell',
-            comment: 'Would you mind if I use this picture?',
-          },
-        ],
-        userLatitude: '40.7128°',
-        userLongitude: '74.0060°',
-        dateCreated: Date.now(),
-      });
+    addDoc(collection(getFirestore(firebase), 'photos'), {
+      photoId: i,
+      userId: '2',
+      imageSrc: `/images/users/jisoo/${i}.jpg`,
+      caption: '<3',
+      likes: [],
+      comments: [
+        {
+          displayName: 'dali',
+          comment: 'Love this!',
+        },
+        {
+          displayName: 'orwell',
+          comment: 'Would you mind if I use this picture?',
+        },
+      ],
+      userLatitude: '40.7128°',
+      userLongitude: '74.0060°',
+      dateCreated: Date.now(),
+    });
   }
 }

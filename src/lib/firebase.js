@@ -2,8 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
-// import seed file
-
 const config = {
   apiKey: 'AIzaSyDNO86N85dyM908RoE4gXdUPZRCL99nYNs',
   authDomain: 'instagram-clone-ecf46.firebaseapp.com',
@@ -15,10 +13,5 @@ const config = {
 
 const firebase = initializeApp(config);
 const { FieldValue } = getFirestore(firebase);
-
-// call seed file only once
-// seedDatabase(firebase)
-
-console.log('firebase', firebase);
 
 export { firebase, FieldValue };
