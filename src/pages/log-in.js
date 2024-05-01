@@ -4,7 +4,7 @@ import FirebaseContext from '../context/firebase';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as ROUTES from '../constants/routes';
 
-export default function Login() {
+export default function LogIn() {
   const navigate = useNavigate();
   const { firebase } = useContext(FirebaseContext);
 
@@ -14,7 +14,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const isInvalid = password === '' || emailAddress === '';
 
-  const handleLogin = async (event) => {
+  const handleLogIn = async (event) => {
     event.preventDefault();
 
     try {
@@ -29,7 +29,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    document.title = 'Login - Instagram';
+    document.title = 'Log In - Instagram';
   }, []);
 
   return (
@@ -52,13 +52,14 @@ export default function Login() {
 
           {error && <p className='mb-4 text-xs text-red-primary'>{error}</p>}
 
-          <form onSubmit={handleLogin} method='post'>
+          <form onSubmit={handleLogIn} method='post'>
             <input
               aria-label='Enter your email address'
               type='text'
               placeholder='Email address'
               className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2'
               onChange={({ target }) => setEmailAddress(target.value)}
+              value={emailAddress}
             />
             <input
               aria-label='Enter your password address'
@@ -66,6 +67,7 @@ export default function Login() {
               placeholder='Password'
               className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2'
               onChange={({ target }) => setPassword(target.value)}
+              value={password}
             />
             <button
               disabled={isInvalid}

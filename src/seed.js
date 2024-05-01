@@ -3,7 +3,7 @@ import { getFirestore, collection, addDoc } from 'firebase/firestore';
 export function seedDatabase(firebase) {
   const users = [
     {
-      userId: 'u8mwz8IGYJays5cldwNZAuMC1NB2',
+      userId: 'kGB6dlPDgkTJylmehzAprutDT0e2',
       username: 'michael',
       fullName: 'Michael Huh',
       emailAddress: 'michael.stephen.huh@gmail.com',
@@ -17,7 +17,7 @@ export function seedDatabase(firebase) {
       fullName: 'JiSoo Kim',
       emailAddress: 'Jisoo.kim1710@gmail.com',
       following: [],
-      followers: ['u8mwz8IGYJays5cldwNZAuMC1NB2'],
+      followers: ['kGB6dlPDgkTJylmehzAprutDT0e2'],
       dateCreated: Date.now(),
     },
     {
@@ -26,7 +26,7 @@ export function seedDatabase(firebase) {
       fullName: 'Salvador Dalí',
       emailAddress: 'salvador@dali.com',
       following: [],
-      followers: ['u8mwz8IGYJays5cldwNZAuMC1NB2'],
+      followers: ['kGB6dlPDgkTJylmehzAprutDT0e2'],
       dateCreated: Date.now(),
     },
     {
@@ -35,7 +35,7 @@ export function seedDatabase(firebase) {
       fullName: 'George Orwell',
       emailAddress: 'george@orwell.com',
       following: [],
-      followers: ['u8mwz8IGYJays5cldwNZAuMC1NB2'],
+      followers: ['kGB6dlPDgkTJylmehzAprutDT0e2'],
       dateCreated: Date.now(),
     },
   ];
