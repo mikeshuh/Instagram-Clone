@@ -21,6 +21,18 @@ export async function doesUserNameExist(username) {
   return result.docs.length > 0;
 }
 
+export async function getUserByUsername(username) {
+  const db = getFirestore(firebase);
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, where('username', '==', username.toLowerCase()));
+  const result = await getDocs(q);
+
+  return result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+}
+
 export async function getUserByUserId(userId) {
   const db = getFirestore(firebase);
   const usersRef = collection(db, 'users');
@@ -109,4 +121,58 @@ export async function getPhotos(userId, following) {
   );
 
   return photosWithUserDetails;
+}
+
+export async function getUserPhotosByUserId(userId) {
+  const db = getFirestore(firebase);
+  const photosRef = collection(db, 'photos');
+  const q = query(photosRef, where('userId', '==', userId));
+  const result = await getDocs(q);
+
+  const photos = result.docs.map((photo) => ({
+    ...photo.data(),
+    docId: photo.id,
+  }));
+
+  return photos;
+}
+
+export async function isUserFollowingProfile(
+  loggedInUserUsername,
+  profileUserId
+) {
+  const db = getFirestore(firebase);
+  const usersRef = collection(db, 'users');
+  const q = query(
+    usersRef,
+    where('username', '==', loggedInUserUsername),
+    where('following', 'array-contains', profileUserId)
+  );
+  const result = await getDocs(q);
+
+  const [response = {}] = result.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+
+  return response.userId;
+}
+
+export async function toggleFollow(
+  isFollowingProfile,
+  activeUserDocId,
+  profileDocId,
+  profileUserId,
+  followingUserId
+) {
+  await updateLoggedInUserFollowing(
+    activeUserDocId,
+    profileUserId,
+    isFollowingProfile
+  );
+  await updateFollowedUserFollowers(
+    profileDocId,
+    followingUserId,
+    isFollowingProfile
+  );
 }
