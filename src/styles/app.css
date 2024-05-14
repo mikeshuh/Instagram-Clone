@@ -606,6 +606,15 @@ video {
 .mt-5 {
   margin-top: 1.25rem;
 }
+.mb-20 {
+  margin-bottom: 5rem;
+}
+.mt-16 {
+  margin-top: 4rem;
+}
+.mt-20 {
+  margin-top: 5rem;
+}
 .flex {
   display: flex;
 }
@@ -614,6 +623,9 @@ video {
 }
 .hidden {
   display: none;
+}
+.aspect-square {
+  aspect-ratio: 1 / 1;
 }
 .h-16 {
   height: 4rem;
@@ -706,6 +718,12 @@ video {
 .gap-8 {
   gap: 2rem;
 }
+.gap-2 {
+  gap: 0.5rem;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
 .rounded {
   border-radius: 0.25rem;
 }
@@ -742,6 +760,9 @@ video {
 }
 .fill-red {
   fill: #ed4956;
+}
+.object-cover {
+  object-fit: cover;
 }
 .p-4 {
   padding: 1rem;

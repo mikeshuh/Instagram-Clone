@@ -45,12 +45,12 @@ export function seedDatabase(firebase) {
     addDoc(collection(getFirestore(firebase), 'users'), users[k]);
   }
 */
-  for (let i = 1; i <= 6; ++i) {
+  for (let i = 1; i <= 4; ++i) {
     addDoc(collection(getFirestore(firebase), 'photos'), {
-      photoId: i + 5,
-      userId: 'zxtTCPZ5rAUAlKZpCNJVW8wu14F2',
-      imageSrc: `/images/users/ryan/${i}.jpg`,
-      caption: ':)',
+      photoId: i + 16,
+      userId: 'kGB6dlPDgkTJylmehzAprutDT0e2',
+      imageSrc: `/images/users/michael/${i}.jpg`,
+      caption: ':D',
       likes: [],
       comments: [],
       dateCreated: Date.now(),
