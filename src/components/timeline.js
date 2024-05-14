@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import { useContext } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import LoggedInUserContext from '../context/logged-in-user';
