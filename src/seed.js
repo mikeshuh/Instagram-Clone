@@ -1,6 +1,7 @@
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 export function seedDatabase(firebase) {
+  /*
   const users = [
     {
       userId: 'kGB6dlPDgkTJylmehzAprutDT0e2',
@@ -43,26 +44,15 @@ export function seedDatabase(firebase) {
   for (let k = 0; k < users.length; k++) {
     addDoc(collection(getFirestore(firebase), 'users'), users[k]);
   }
-
-  for (let i = 1; i <= 5; ++i) {
+*/
+  for (let i = 1; i <= 6; ++i) {
     addDoc(collection(getFirestore(firebase), 'photos'), {
-      photoId: i,
-      userId: '2',
-      imageSrc: `/images/users/jisoo/${i}.jpg`,
-      caption: '<3',
+      photoId: i + 5,
+      userId: 'zxtTCPZ5rAUAlKZpCNJVW8wu14F2',
+      imageSrc: `/images/users/ryan/${i}.jpg`,
+      caption: ':)',
       likes: [],
-      comments: [
-        {
-          displayName: 'dali',
-          comment: 'Love this!',
-        },
-        {
-          displayName: 'orwell',
-          comment: 'Would you mind if I use this picture?',
-        },
-      ],
-      userLatitude: '40.7128°',
-      userLongitude: '74.0060°',
+      comments: [],
       dateCreated: Date.now(),
     });
   }

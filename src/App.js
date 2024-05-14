@@ -1,9 +1,8 @@
-import { Suspense, lazy, useContext } from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import useAuthListener from './hooks/user-auth-listener';
 import UserContext from './context/user';
-
 import ProtectedRoute from './helpers/protected-route';
 
 const LogIn = lazy(() => import('./pages/log-in'));
@@ -27,7 +26,7 @@ export default function App() {
               path={ROUTES.DASHBOARD}
               element={
                 <ProtectedRoute user={user}>
-                  <Dashboard />
+                  <Dashboard user={user} />
                 </ProtectedRoute>
               }
             />
