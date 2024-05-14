@@ -50,15 +50,13 @@ export default function SignUp() {
           username: username.toLowerCase(),
           fullName,
           emailAddress: emailAddress.toLowerCase(),
+          following: [],
+          followers: [],
           dateCreated: Date.now(),
         });
 
         navigate(ROUTES.DASHBOARD);
       } catch (error) {
-        setUsername('');
-        setFullName('');
-        setEmailAddress('');
-        setPassword('');
         setError(error.message);
       }
     } else {
@@ -103,7 +101,7 @@ export default function SignUp() {
             <input
               aria-label='Enter your full name'
               type='text'
-              placeholder='Full Name'
+              placeholder='Full name'
               className='text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2'
               onChange={({ target }) => setFullName(target.value)}
               value={fullName}

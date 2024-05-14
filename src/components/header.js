@@ -1,17 +1,22 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FirebaseContext from '../context/firebase';
 import UserContext from '../context/user';
 import * as ROUTES from '../constants/routes';
+import { DEFAULT_IMAGE_PATH } from '../constants/paths';
+import useUser from '../hooks/use-user';
 import { getAuth, signOut } from 'firebase/auth';
 
 export default function Header() {
+  const { user: loggedInUser } = useContext(UserContext);
+  const { user } = useUser(loggedInUser?.uid);
   const { firebase } = useContext(FirebaseContext);
-  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     const auth = getAuth(firebase);
-    signOut(auth);
+    await signOut(auth);
+    navigate(ROUTES.LOG_IN);
   };
 
   return (
@@ -30,7 +35,7 @@ export default function Header() {
             </h1>
           </div>
           <div className='text-gray-700 text-center flex items-center align-items'>
-            {user ? (
+            {loggedInUser ? (
               <>
                 <Link to={ROUTES.DASHBOARD} aria-label='Dashboard'>
                   <svg
@@ -74,15 +79,20 @@ export default function Header() {
                     />
                   </svg>
                 </button>
-                <div className='flex items-center cursor-pointer'>
-                  <Link to={`/p/${user.displayName}`}>
-                    <img
-                      className='rounded-full h-8 w-8 flex'
-                      src={`/images/avatars/${user.displayName}.jpg`}
-                      alt={`${user.displayName} profile`}
-                    />
-                  </Link>
-                </div>
+                {user && (
+                  <div className='flex items-center cursor-pointer'>
+                    <Link to={`/p/${user?.username}`}>
+                      <img
+                        className='rounded-full h-8 w-8 flex'
+                        src={`/images/avatars/${user?.username}.jpg`}
+                        alt={`${user?.username} profile`}
+                        onError={(e) => {
+                          e.target.src = DEFAULT_IMAGE_PATH;
+                        }}
+                      />
+                    </Link>
+                  </div>
+                )}
               </>
             ) : (
               <>
